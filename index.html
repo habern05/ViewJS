@@ -1,0 +1,59 @@
+<!Doctype html>
+<html>
+	<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue"> </script>
+	</head>
+	<body>
+	<div id="app">
+	<div>
+	<div class="container">
+		<div class="row" v-for="task in tasks">
+			<div class=col-5>
+				{{task.label}}
+			</div>
+			<div class="col-7">
+				{{ task.minutes }}
+			</div>
+		</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+			{{ sum }} minutes
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+		<div>
+			<input type="button" value="Uppercase" v-on:click="uppercase"/>
+			<input type="button" value="Reset" v-on:click="reset"/>
+		</div>
+	</div>
+	<script>
+	var app = new Vue({
+	el: "#app", 
+	data: {
+	  tasks: [
+	  {label: "Katze gefüttert", minutes: 20}, 
+	  {label: "Visual Studio installiert", minutes: 180}
+	  ]
+	},
+	computed:{
+		sum: function(){
+			return this.tasks.reduce((pv, cv) => pv + cv.minutes, 0);
+		}
+	}, 
+	methods: {
+		uppercase: function(){
+			this.text = this.text.toUpperCase(); 
+		},
+		reset: function(){
+			this.text = ""; 
+		}
+	}
+	}); 
+	</script>
+	</body>
+</html>
